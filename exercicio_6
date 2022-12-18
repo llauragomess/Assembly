@@ -1,0 +1,40 @@
+# a = $s0  b = $s1 c = $s2 d = $s3 e = $s4 f = $s5
+# a = 1 b = 1 c = 1 d = 1 e = 1 f = 1 
+
+.text 
+#inicializando as variáveis com 1 
+addi $s0, $zero, 1
+addi $s1, $zero, 1
+addi $s2, $zero, 1
+addi $s3, $zero, 1
+addi $s4, $zero, 1
+addi $s5, $zero, 1
+
+#realizando os cálculos das variáveis 
+sub $s0, $s1, $s2 # a = b-c
+add $s1, $s0, $s2 # b = a+c
+add $t0, $s0, $s1 # temporário = a+b
+sub $s3, $t0, $s2 # d = a+b - c
+sub $s5, $t0, $s3 # f = a+b-d
+add $t1, $s1, $s3 # temporário = b+d
+sub $s2, $s0, $t1 # c = a - (b+d)
+sub $t2, $s1, $s2 # temporário = b-c
+sub $s4, $s0, $t2 # e = a - (b-c)
+add $s4, $s4, $s5 # a - (b-c) + f
+sub $t3, $s0, $s1 # temporário = a-b
+sub $t4, $s4, $t3 # temporário = e - (a-b)
+add $s5, $t4, $t2 # f = e - (a-b) + (b-c)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
